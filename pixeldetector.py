@@ -120,6 +120,6 @@ if os.path.isfile(args["input"]):
 
         print(f"Palette reduced to {best_k} colors in {round(time.time()*1000)-start} milliseconds")
 
-    file_name = args["input"].split("\\")[-1]
+    file_name = args["input"].split("\\")[-1].split(".")[0]
     
-    output.save(args["output"] + file_name)
+    output.save(args["output"] + file_name + "_processed.png")
