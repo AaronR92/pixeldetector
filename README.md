@@ -12,7 +12,13 @@ Exaggerated example:
 # Usage
 Requirements: Pillow, Numpy, Scipy
 
+1. `pip install Pillow`
+2. `pip install Numpy`
+3. `pip install Scipy`
+
 Run pixeldetector.py
+
+`python pixeldetector.py -i <full_path_to_image>`
 
 Arguments:
 
