@@ -3,6 +3,7 @@ from PIL import Image
 import numpy as np
 import scipy
 from itertools import product
+from datetime import datetime
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--input", required = True, help = "Path to input image")
@@ -95,6 +96,10 @@ def determine_best_k(image: Image, max_k: int):
 
     return best_k
 
+def create_folder_if_not_present(folder_name: str):
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+
 if os.path.isfile(args["input"]):
     # Open input image
     image = Image.open(args["input"]).convert('RGB')
@@ -121,5 +126,12 @@ if os.path.isfile(args["input"]):
         print(f"Palette reduced to {best_k} colors in {round(time.time()*1000)-start} milliseconds")
 
     file_name = args["input"].split("\\")[-1].split(".")[0]
-    
-    output.save(args["output"] + file_name + "_processed.png")
+
+    if (args["output"] == "output/"):
+        create_folder_if_not_present("output")
+        date_now_str = datetime.now().strftime("%Y-%m-%d")
+        create_folder_if_not_present("output/" + date_now_str)
+
+        output.save(args["output"] + date_now_str + "/" + file_name + "_processed.png")
+    else:
+        output.save(args["output"] + file_name + "_processed.png")
