@@ -6,7 +6,7 @@ from itertools import product
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--input", required = True, help = "Path to input image")
-ap.add_argument("-o", "--output", required = False, default="output.png", help = "Path to save output image")
+ap.add_argument("-o", "--output", required = False, default="output/", help = "Path to save output image")
 ap.add_argument("-m", "--max", required = False, type=int, default=128, help = "Max colors for computation, more = slower")
 ap.add_argument("-p", "--palette", required = False, action="store_true", help = "Automatically reduce the image to predicted color palette")
 args = vars(ap.parse_args())
@@ -119,5 +119,7 @@ if os.path.isfile(args["input"]):
         output = downscale.quantize(colors=best_k, method=1, kmeans=best_k, dither=0).convert('RGB')
 
         print(f"Palette reduced to {best_k} colors in {round(time.time()*1000)-start} milliseconds")
+
+    file_name = args["input"].split("\\")[-1]
     
-    output.save(args["output"])
+    output.save(args["output"] + file_name)
