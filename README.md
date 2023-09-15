@@ -10,6 +10,8 @@ Exaggerated example:
 ![Example](https://github.com/Astropulse/pixeldetector/assets/61034487/f8ae2802-42c1-4dba-af56-fe849ac8915c)
 
 # Usage
+Install Python 3.10
+
 Requirements: Pillow, Numpy, Scipy
 
 1. `pip install Pillow`
